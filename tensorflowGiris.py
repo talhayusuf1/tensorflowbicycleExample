@@ -7,7 +7,7 @@ from sklearn.preprocessing import MinMaxScaler
 import tensorflow as tf
 from keras.models import Sequential
 from keras.layers import Dense
-
+from keras.models import load_model  # modeli kaydediyor
 
 # sklearn sayesinde train test ayrimi yaptık ml in bi kutuphanesi
 bisikletAnalizDataFrame = pd.read_excel("bisiklet_fiyatlari.xlsx")
@@ -74,3 +74,9 @@ print(mean_squared_error(
     tahminDataFrame["Gercek Y"], tahminDataFrame["Tahmin Y"]))
 
 bisikletAnalizDataFrame.describe()  # Butun bilgileri bize verir
+
+model.predict()  # Burada tahminleri daha dogfurusu modeli kullanırız
+
+model.save("bisiklet_modeli.h5")  # burda model kaydolur
+
+load_model("yeni model")  # Burda ise modeli yukleriz
